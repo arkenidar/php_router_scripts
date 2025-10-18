@@ -1,0 +1,22 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="300" height="200" fill="#e8f4fd"/>
+  
+  <!-- PHP Logo inspired design -->
+  <ellipse cx="150" cy="100" rx="120" ry="60" fill="#8892bf" opacity="0.8"/>
+  <ellipse cx="150" cy="100" rx="100" ry="50" fill="#4f5b93"/>
+  
+  <!-- PHP Text -->
+  <text x="150" y="105" font-family="Arial, sans-serif" font-size="28" font-weight="bold" 
+        text-anchor="middle" fill="white">PHP</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="80" cy="60" r="8" fill="#007acc" opacity="0.6"/>
+  <circle cx="220" cy="60" r="8" fill="#007acc" opacity="0.6"/>
+  <circle cx="80" cy="140" r="8" fill="#007acc" opacity="0.6"/>
+  <circle cx="220" cy="140" r="8" fill="#007acc" opacity="0.6"/>
+  
+  <!-- Router text -->
+  <text x="150" y="170" font-family="Arial, sans-serif" font-size="14" 
+        text-anchor="middle" fill="#333">Router Demo</text>
+</svg>
