@@ -265,7 +265,7 @@ RewriteRule ^(.*)$ - [QSA,L]</pre>
 ├── assets/
 │   ├── style.css      # Stylesheet
 │   ├── demo-image.svg # Demo image
-│   └── docs.html      # This documentation
+│   └── docs.php       # This documentation
 └── README.md          # Project documentation</pre>
         </div>
 
@@ -357,7 +357,7 @@ curl http://localhost/hello</pre>
         </div>
 
         <p style="text-align: center; margin-top: 50px;">
-            <a href="/home">← Back to Router Demo</a>
+            <a href="../home">← Back to Router Demo</a>
         </p>
     </div>
 </body>
