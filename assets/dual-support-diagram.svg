@@ -1,0 +1,120 @@
+<svg width="900" height="650" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 26px; font-weight: bold; fill: #2c3e50; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 18px; font-weight: 600; fill: #34495e; }
+      .box { fill: #ecf0f1; stroke: #bdc3c7; stroke-width: 1; filter: url(#shadow); }
+      .dev-box { fill: #e8f8f5; stroke: #27ae60; stroke-width: 2; filter: url(#shadow); }
+      .prod-box { fill: #fef9e7; stroke: #f39c12; stroke-width: 2; filter: url(#shadow); }
+      .text { font-family: Arial, sans-serif; font-size: 14px; fill: #2c3e50; font-weight: 500; }
+      .small-text { font-family: Arial, sans-serif; font-size: 11px; fill: #7f8c8d; }
+      .code { font-family: 'Courier New', monospace; font-size: 11px; fill: #8e44ad; font-weight: bold; }
+      .arrow { stroke: #2c3e50; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+      .flow-arrow { stroke: #3498db; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .section-bg { fill: #ffffff; stroke: #d5dbdb; stroke-width: 1; filter: url(#shadow); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50" />
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect x="0" y="0" width="900" height="650" fill="#f8f9fa"/>
+  
+  <!-- Title with background -->
+  <rect x="200" y="10" width="500" height="40" class="section-bg" rx="8"/>
+  <text x="450" y="35" text-anchor="middle" class="title">PHP Router Dual Support Architecture</text>
+  
+  <!-- Development Environment -->
+  <rect x="30" y="70" width="380" height="220" class="dev-box" rx="12"/>
+  <text x="220" y="100" text-anchor="middle" class="subtitle">🔧 Development Environment</text>
+  
+  <!-- PHP Built-in Server -->
+  <rect x="50" y="115" width="340" height="45" class="box" rx="8"/>
+  <text x="220" y="145" text-anchor="middle" class="text">PHP Built-in Server</text>
+  
+  <!-- Command -->
+  <text x="220" y="175" text-anchor="middle" class="code">php -S localhost:8000 router.php</text>
+  
+  <!-- Request Flow Dev -->
+  <rect x="60" y="190" width="95" height="30" class="box" rx="5"/>
+  <text x="107" y="210" text-anchor="middle" class="small-text">HTTP Request</text>
+  
+  <rect x="170" y="190" width="95" height="30" class="box" rx="5"/>
+  <text x="217" y="210" text-anchor="middle" class="small-text">router.php</text>
+  
+  <rect x="280" y="190" width="90" height="30" class="box" rx="5"/>
+  <text x="325" y="210" text-anchor="middle" class="small-text">Static File?</text>
+  
+  <!-- Dev arrows -->
+  <line x1="155" y1="205" x2="170" y2="205" class="flow-arrow"/>
+  <line x1="265" y1="205" x2="280" y2="205" class="flow-arrow"/>
+  
+  <!-- Production Environment -->
+  <rect x="490" y="70" width="380" height="220" class="prod-box" rx="12"/>
+  <text x="680" y="100" text-anchor="middle" class="subtitle">🚀 Production Environment</text>
+  
+  <!-- Apache Server -->
+  <rect x="510" y="115" width="340" height="45" class="box" rx="8"/>
+  <text x="680" y="145" text-anchor="middle" class="text">Apache Server + .htaccess</text>
+  
+  <!-- htaccess rules -->
+  <text x="680" y="175" text-anchor="middle" class="code">RewriteEngine On</text>
+  
+  <!-- Request Flow Prod -->
+  <rect x="520" y="190" width="95" height="30" class="box" rx="5"/>
+  <text x="567" y="210" text-anchor="middle" class="small-text">HTTP Request</text>
+  
+  <rect x="630" y="190" width="95" height="30" class="box" rx="5"/>
+  <text x="677" y="210" text-anchor="middle" class="small-text">.htaccess</text>
+  
+  <rect x="740" y="190" width="100" height="30" class="box" rx="5"/>
+  <text x="790" y="210" text-anchor="middle" class="small-text">File exists?</text>
+  
+  <!-- Prod arrows -->
+  <line x1="615" y1="205" x2="630" y2="205" class="flow-arrow"/>
+  <line x1="725" y1="205" x2="740" y2="205" class="flow-arrow"/>
+  
+  <!-- Static Files Section -->
+  <rect x="30" y="320" width="840" height="130" class="section-bg" rx="12"/>
+  <text x="450" y="350" text-anchor="middle" class="subtitle">📁 Static File Handling</text>
+  
+  <!-- Dev static handling -->
+  <rect x="60" y="365" width="360" height="70" class="dev-box" rx="8"/>
+  <text x="240" y="390" text-anchor="middle" class="text">Development: return false;</text>
+  <text x="240" y="410" text-anchor="middle" class="small-text">PHP built-in server serves static files directly</text>
+  <text x="240" y="425" text-anchor="middle" class="small-text">No web server configuration needed</text>
+  
+  <!-- Prod static handling -->
+  <rect x="480" y="365" width="360" height="70" class="prod-box" rx="8"/>
+  <text x="660" y="390" text-anchor="middle" class="text">Production: .htaccess handles</text>
+  <text x="660" y="410" text-anchor="middle" class="small-text">Apache serves static files before reaching PHP</text>
+  <text x="660" y="425" text-anchor="middle" class="small-text">Optimized performance with web server</text>
+  
+  <!-- Dynamic Routes Section -->
+  <rect x="30" y="470" width="840" height="130" class="section-bg" rx="12"/>
+  <text x="450" y="500" text-anchor="middle" class="subtitle">⚡ Dynamic Route Handling</text>
+  
+  <!-- Routes list -->
+  <rect x="60" y="515" width="360" height="70" class="dev-box" rx="8"/>
+  <text x="240" y="540" text-anchor="middle" class="text">Available Routes:</text>
+  <text x="240" y="560" text-anchor="middle" class="code">/home /hello /about /api/status</text>
+  <text x="240" y="575" text-anchor="middle" class="small-text">Same routing logic in both environments</text>
+  
+  <!-- Router logic -->
+  <rect x="480" y="515" width="360" height="70" class="prod-box" rx="8"/>
+  <text x="660" y="540" text-anchor="middle" class="text">Router Logic (router.php):</text>
+  <text x="660" y="560" text-anchor="middle" class="code">switch($uri) { case '/home': ... }</text>
+  <text x="660" y="575" text-anchor="middle" class="small-text">Identical codebase for all environments</text>
+  
+  <!-- Connection arrows between environments -->
+  <line x1="410" y1="180" x2="490" y2="180" class="arrow"/>
+  <text x="450" y="172" text-anchor="middle" class="small-text">Same router.php</text>
+  
+  <!-- Legend -->
+  <rect x="250" y="620" width="400" height="25" class="section-bg" rx="8"/>
+  <text x="450" y="637" text-anchor="middle" class="small-text">🔄 Both environments use identical router.php with automatic dual compatibility</text>
+</svg>

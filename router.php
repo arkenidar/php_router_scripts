@@ -2,7 +2,13 @@
 
 /**
  * Simple PHP Router Script
- * This script handles routing for the PHP built-in development server
+ * This script handles routing for web servers with .htaccess support
+ * All requests (except static files) are routed through index.php to this file
+ * 
+ * For development with PHP built-in server, you can still use:
+ * php -S localhost:8000 router.php
+ * 
+ * For production with Apache/Nginx, use the .htaccess file to route to index.php
  */
 
 // Get the requested URI
@@ -15,6 +21,11 @@ $uri = urldecode($uri);
 // Basic routing logic
 switch ($uri) {
     case '/':
+        // Redirect root to /home
+        header('Location: /home');
+        exit;
+
+    case '/home':
         echo "<!DOCTYPE html><html><head>";
         echo "<title>PHP Router Demo</title>";
         echo "<link rel='stylesheet' href='/assets/style.css'>";
@@ -28,7 +39,13 @@ switch ($uri) {
         echo "<li><a href='/about'>GET /about</a> - Page with static image and CSS</li>";
         echo "<li><a href='/api/status'>GET /api/status</a> - JSON API endpoint</li>";
         echo "<li><a href='/assets/demo-image.svg'>Direct image access</a></li>";
+        echo "<li><a href='/assets/docs.html'><strong>📖 Dual Compatibility Documentation</strong></a> - Complete technical guide</li>";
         echo "</ul>";
+        echo "<h2>Dual Support Architecture</h2>";
+        echo "<div class='image-demo'>";
+        echo "<img src='/assets/dual-support-diagram.svg' alt='PHP Router Dual Support Architecture Diagram' style='max-width: 100%; height: auto;' />";
+        echo "<p><em>This router supports both PHP built-in server (development) and Apache with .htaccess (production)</em></p>";
+        echo "</div>";
         echo "</div></body></html>";
         break;
 
@@ -68,7 +85,7 @@ switch ($uri) {
             echo "</ul>";
         }
 
-        echo "<a href='/'>← Back to home</a>";
+        echo "<a href='/home'>← Back to home</a>";
         echo "</div></body></html>";
         break;
 
@@ -90,7 +107,7 @@ switch ($uri) {
         echo "<li><strong>Router:</strong> Custom PHP routing with fallback to static files</li>";
         echo "</ul>";
         echo "<p>The styling you see is loaded from <code>/assets/style.css</code></p>";
-        echo "<a href='/'>← Back to home</a>";
+        echo "<a href='/home'>← Back to home</a>";
         echo "</div></body></html>";
         break;
 
@@ -105,16 +122,22 @@ switch ($uri) {
         break;
 
     default:
-        // Check if it's a static file
+        // Check if it's a static file (needed for PHP built-in server compatibility)
         $file = __DIR__ . $uri;
         if (is_file($file)) {
             return false; // Let PHP's built-in server handle static files
         }
 
-        // 404 for other routes
+        // 404 for unknown routes (static files are handled by .htaccess in production)
         http_response_code(404);
+        echo "<!DOCTYPE html><html><head>";
+        echo "<title>404 - Not Found</title>";
+        echo "<link rel='stylesheet' href='/assets/style.css'>";
+        echo "</head><body><div class='container'>";
         echo "<h1>404 - Not Found</h1>";
         echo "<p>The requested route '{$uri}' was not found.</p>";
-        echo "<a href='/'>← Back to home</a>";
+        echo "<p>Make sure you're using the correct URL format.</p>";
+        echo "<a href='/home'>← Back to home</a>";
+        echo "</div></body></html>";
         break;
 }
