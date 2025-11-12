@@ -16,7 +16,19 @@
 // Detect base path for non-webroot installations
 function getBasePath()
 {
-    $scriptDir = dirname($_SERVER['SCRIPT_NAME']);
+    // For PHP built-in server, SCRIPT_NAME might be the requested file path
+    // instead of the router script path. We need to handle this case.
+    $scriptName = $_SERVER['SCRIPT_NAME'];
+
+    // Check if we're running with PHP built-in server
+    $server = $_SERVER['SERVER_SOFTWARE'] ?? '';
+    if (strpos($server, 'PHP') !== false && strpos($server, 'Development Server') !== false) {
+        // For PHP built-in server, the base path should be empty when using router.php
+        return '';
+    }
+
+    $scriptDir = dirname($scriptName);
+
     // Remove trailing slash unless it's root
     return $scriptDir === '/' ? '' : $scriptDir;
 }
@@ -160,8 +172,10 @@ switch ($uri) {
     default:
         // Check if it's a static file (needed for PHP built-in server compatibility)
         $file = __DIR__ . $uri;
+
         if (is_file($file)) {
-            return false; // Let PHP's built-in server handle static files
+            // For PHP built-in server, return false to let it serve the file
+            return false;
         }
 
         // 404 for unknown routes (static files are handled by .htaccess in production)
